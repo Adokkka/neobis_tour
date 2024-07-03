@@ -31,8 +31,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,7 +43,9 @@ INSTALLED_APPS = [
     'drf_yasg',
     'cloudinary',
     'cloudinary_storage',
-    'django.contrib.postgres'
+    'django.contrib.postgres',
+    'corsheaders',
+
 
 
 ]
@@ -53,11 +53,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'neotour.urls'
@@ -152,3 +154,10 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+CSRF_TRUSTED_ORIGINS = ['https://berlin-backender.org.kg']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = "*"
